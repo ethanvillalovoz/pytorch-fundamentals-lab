@@ -1,28 +1,14 @@
-# Pull Request
+## Summary
 
-Thank you for your contribution! Please fill out the following checklist and provide details about your changes.
+<!-- What behavior or lesson changed, and why? -->
 
-## Description
+## Evidence
 
-<!-- Please include a summary of the change and which issue is fixed. Also include relevant motivation and context. -->
-
-Fixes #(issue)
-
-## Type of change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
-- [ ] Other (please describe):
+<!-- Include commands, metrics, or screenshots needed to review the change. -->
 
 ## Checklist
-- [ ] My code follows the project style guidelines
-- [ ] I have performed a self-review of my code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation (if relevant)
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works (if applicable)
-- [ ] New and existing tests pass locally with my changes
 
-## Additional context
-
-<!-- Add any other context about the PR here. -->
+- [ ] `ruff check .`
+- [ ] `pytest`
+- [ ] `python scripts/build_notebooks.py`
+- [ ] No datasets, checkpoints, secrets, or notebook outputs were committed

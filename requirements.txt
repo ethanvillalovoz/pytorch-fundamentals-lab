@@ -1,8 +1,1 @@
-pandas
-matplotlib
-scikit-learn
-seaborn
-black
-numpy
-scipy
-black[jupyter]
+-e .[notebooks]
