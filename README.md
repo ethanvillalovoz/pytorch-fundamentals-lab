@@ -1,162 +1,104 @@
-# pytorch-basic-nn
+# PyTorch Fundamentals Lab
 
-![Build](https://img.shields.io/badge/build-passing-brightgreen)
-![Python](https://img.shields.io/badge/python-3.10-blue)
-![License](https://img.shields.io/github/license/ethanvillalovoz/pytorch-basic-nn)
+[![CI](https://github.com/ethanvillalovoz/pytorch-fundamentals-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/ethanvillalovoz/pytorch-fundamentals-lab/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-171717)](pyproject.toml)
+[![MIT license](https://img.shields.io/badge/license-MIT-171717)](LICENSE)
 
----
+A notebook-first path from tensor mechanics to measured neural-network behavior. The lessons use a
+small installable package underneath, so the MLP, CNN, training loops, and metrics exercised in the
+notebooks are the same implementations covered by CI.
 
-## Introduction
+<p align="center">
+  <img src="docs/media/lab-preview.webp" alt="Animated walkthrough of the five PyTorch lessons and the deterministic Iris reference run" width="100%">
+</p>
 
-A beginner-friendly PyTorch tutorial and learning resource. This project helps you (and others) learn the basics of PyTorch by building, training, and evaluating neural networks from scratch.
+## What is here
 
----
+| Lesson | Focus | Tested implementation |
+| --- | --- | --- |
+| `01_tensors` | Shape, dtype, device | Device selection and deterministic seeds |
+| `02_tensor_operations` | Reshape, slice, broadcast, stack | Tensor semantics in focused examples |
+| `03_autograd` | Loss, backward pass, optimizer step | Reusable supervised-learning loop |
+| `04_iris_mlp` | Stratified split, train-only scaling, MLP | Deterministic reference experiment |
+| `05_mnist_cnn` | Convolution, pooling, evaluation | Optional MNIST pipeline with bounded smoke runs |
 
-## Description
+The repository does not commit datasets, notebook output, or an unexplained checkpoint. MNIST uses
+one ignored `data/` cache, and the Iris evidence is regenerated from source.
 
-This repository provides clear, hands-on examples and explanations for using PyTorch. It covers:
-- Tensor basics and operations
-- Building and training a simple neural network (Iris dataset)
-- Building and training a CNN (MNIST dataset)
-- Model evaluation, visualization, and saving/loading
-
-Whether you are new to deep learning or want a practical tutorial, this repo walks through the essential steps of using PyTorch for neural networks.
-
----
-
-## Visuals
-
-![Screenshot](docs/Intro.png)
-
----
-
-## Prerequisites / Requirements
-
-- Python 3.10+
-- [PyTorch](https://pytorch.org/) (see [Apple Silicon instructions](https://pytorch.org/get-started/locally/) if on Mac M1/M2/M3/M4)
-- NumPy
-- (Optional) Conda
-- (Optional) Jupyter Notebook
-
----
-
-## Technologies Used
-
-- PyTorch
-- NumPy
-- Pandas
-- Matplotlib
-- scikit-learn
-- torchvision
-
----
-
-## QuickStart Guide
+## Quick start
 
 ```bash
-# (Recommended) Create a new environment
-conda create -n pytorch python=3.10
-conda activate pytorch
-
-# Install dependencies
-pip install -r requirements.txt
-
-# (Optional) For Apple Silicon, use:
-pip3 install torch torchvision torchaudio
-
-# Run notebooks
-jupyter notebook
-
-# Or run the training script
-python src/train.py
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[notebooks,dev]"
+make check
+jupyter lab
 ```
 
----
+Open the notebooks in order from [`notebooks/`](notebooks). For the package-only path, install the
+base project with `python -m pip install -e .`.
 
-## Advanced Usage
-
-- Try different architectures in the notebooks (e.g., add more layers, change activation functions)
-- Experiment with hyperparameters (learning rate, batch size, epochs)
-- Use your own datasets by modifying the data loading sections
-- Save and load models for inference or further training
-
----
-
-## Configuration
-
-- All configuration is done in the notebooks or `src/train.py`
-- For custom datasets, update the data loading paths and preprocessing steps
-- No API keys or private tokens required
-
----
-<!-- 
-## Automated Tests
-
-Run all tests with:
+## Reproduce the reference run
 
 ```bash
-pytest tests/
+torch-lab iris --output-dir artifacts/iris-reference
+git diff -- artifacts/iris-reference
 ```
 
---- -->
+The committed CPU run uses seed `42`, a stratified `120/30` split, train-only standardization, and a
+243-parameter MLP. It correctly classifies `28/30` held-out examples (`93.3%`) with test loss
+`0.1444`. The held-out set is intentionally small, so this is a reproducibility check, not a
+benchmark claim.
 
-## Roadmap
+- [`metrics.json`](artifacts/iris-reference/metrics.json) records configuration, learning curve,
+  model size, loss, accuracy, and confusion matrix.
+- [`predictions.csv`](artifacts/iris-reference/predictions.csv) makes every held-out decision
+  inspectable.
 
-- [x] Basic tensor operations notebook
-- [x] Simple neural network (Iris)
-- [x] CNN example (MNIST)
-- [ ] Add more activation functions
-- [ ] Add data augmentation examples
-- [ ] Add model export to ONNX
-- [ ] Add more advanced PyTorch features (e.g., custom datasets, callbacks)
+## Run MNIST
 
----
+Install the vision extra, then choose a bounded smoke run or a full experiment:
 
-## Folder Structure
+```bash
+python -m pip install -e ".[vision]"
 
-```
-pytorch-basic-nn/
-├── src/
-│   ├── 1_Tensors.ipynb
-│   ├── 2_Tensor_Operations.ipynb
-│   ├── 3_Tensor_Math.ipynb
-│   ├── 4_Simple_NeuralNetwork.ipynb
-│   ├── 5_CNN.ipynb
-├── docs/
-│   └── Intro.png
-├── requirements.txt
-├── .gitignore
-├── LICENSE
-└── README.md
+# Fast pipeline check
+torch-lab mnist --epochs 1 --max-train-batches 100 --max-test-batches 20
+
+# Full three-epoch run
+torch-lab mnist --epochs 3
 ```
 
----
+The CNN returns raw logits for `CrossEntropyLoss`. Training and evaluation aggregate loss and
+accuracy by example, avoiding the misleading last-batch and batch-average calculations in the
+original notebook implementation.
 
-## Contribution
+## Structure
 
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+```text
+.
+├── artifacts/iris-reference/  # reproducible metrics and predictions
+├── docs/media/                # generated README preview
+├── notebooks/                 # five output-free lessons
+├── scripts/                   # notebook and media generators
+├── src/pytorch_lab/           # models, experiments, CLI, and shared loops
+└── tests/                     # deterministic unit and integration coverage
+```
 
-- Open an issue for bugs or feature requests
-- Fork the repo and submit a pull request
-- Follow code style and add tests where appropriate
+`scripts/build_notebooks.py` is the maintained source for notebook structure. CI regenerates the
+notebooks and fails if committed files drift or acquire output.
 
----
+## Verification
+
+```bash
+ruff check .
+pytest
+```
+
+CI runs both commands on Python 3.10 and 3.12, enforces at least 90% package coverage, and verifies
+that generated notebooks are current. See [CONTRIBUTING.md](CONTRIBUTING.md) for the short review
+checklist.
 
 ## License
 
-MIT License
-
----
-
-## FAQ / Troubleshooting
-
-- **Q:** How do I install PyTorch on Mac Apple Silicon?
-  **A:** Use the official [PyTorch instructions for Apple Silicon](https://pytorch.org/get-started/locally/), or run:
-  ```
-  pip3 install torch torchvision torchaudio
-  ```
-
-- **Q:** Where do I start?
-  **A:** Open the notebooks in `src/` and follow them in order for a guided learning experience.
-
----
+[MIT](LICENSE)

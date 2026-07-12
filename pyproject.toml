@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytorch-fundamentals-lab"
+version = "2.0.0"
+description = "A tested, notebook-first lab for tensors, autograd, MLPs, and CNNs in PyTorch."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Ethan Villalovoz" }]
+keywords = ["pytorch", "deep-learning", "neural-networks", "mnist", "education"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Education",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.26,<3",
+  "scikit-learn>=1.4,<2",
+  "torch>=2.2,<3",
+]
+
+[project.optional-dependencies]
+vision = ["torchvision>=0.17,<1"]
+notebooks = [
+  "jupyterlab>=4.2,<5",
+  "matplotlib>=3.8,<4",
+  "pandas>=2.2,<3",
+  "pillow>=10,<13",
+  "seaborn>=0.13,<1",
+  "torchvision>=0.17,<1",
+]
+dev = [
+  "pytest>=8.2,<9",
+  "pytest-cov>=5,<7",
+  "ruff>=0.9,<1",
+]
+
+[project.scripts]
+torch-lab = "pytorch_lab.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ethanvillalovoz/pytorch-fundamentals-lab"
+Repository = "https://github.com/ethanvillalovoz/pytorch-fundamentals-lab"
+Issues = "https://github.com/ethanvillalovoz/pytorch-fundamentals-lab/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=pytorch_lab --cov-report=term-missing --cov-fail-under=90"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+omit = ["src/pytorch_lab/__main__.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "SIM", "UP"]

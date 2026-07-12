@@ -1,41 +1,22 @@
-# Contributing to pytorch-basic-nn
+# Contributing
 
-Thank you for considering contributing to this project! Your help is appreciated.
+Focused corrections and lesson improvements are welcome. Please open an issue before proposing a
+new model or dataset so the lab stays small and sequential.
 
-## How to Contribute
+## Local checks
 
-1. **Fork the repository** and clone it locally.
-2. **Create a new branch** for your feature or bugfix:
-   ```
-   git checkout -b my-feature
-   ```
-3. **Make your changes** with clear commit messages.
-4. **Add or update tests** as appropriate.
-5. **Run all tests** to ensure nothing is broken:
-   ```
-   pytest tests/
-   ```
-6. **Push your branch** to your fork and open a [Pull Request (PR)](.github/PULL_REQUEST_TEMPLATE.md) with a clear description of your changes.
+```bash
+python -m pip install -e ".[notebooks,dev]"
+make check
+```
 
-## Guidelines
+When changing a lesson, edit `scripts/build_notebooks.py`, run `make notebooks`, and commit the
+generated notebook. Committed notebooks must have no execution counts or outputs.
 
-- Follow the existing code style and structure.
-- Write clear, concise commit messages.
-- Add comments and documentation where helpful.
-- If you add a new feature, update the README.md as needed.
-- Be respectful and constructive in code reviews and discussions.
+## Pull requests
 
-## Reporting Issues
-
-- Use the [Issues](.github/ISSUE_TEMPLATE/) tab to report bugs or suggest features.
-- Please provide as much detail as possible, including steps to reproduce bugs.
-
-## Community
-
-- Be kind and inclusive.
-- Help others if you can.
-- All contributions, big or small, are welcome!
-
----
-
-Thank you for helping make this
+- Explain the behavior being changed and why.
+- Add or update tests for shared code.
+- Report commands run and their results.
+- Do not commit datasets, model checkpoints, credentials, or notebook output.
+- Keep performance claims tied to a committed configuration and inspectable artifact.
