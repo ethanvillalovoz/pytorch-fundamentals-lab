@@ -39,7 +39,7 @@ notebooks = [
 ]
 dev = [
   "pytest>=8.2,<9",
-  "pytest-cov>=5,<7",
+  "pytest-cov>=5,<8",
   "ruff>=0.9,<1",
 ]
 
