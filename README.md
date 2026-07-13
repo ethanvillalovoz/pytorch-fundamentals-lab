@@ -9,7 +9,7 @@ small installable package underneath, so the MLP, CNN, training loops, and metri
 notebooks are the same implementations covered by CI.
 
 <p align="center">
-  <img src="docs/media/lab-preview.webp" alt="Animated walkthrough of the five PyTorch lessons and the deterministic Iris reference run" width="100%">
+  <img src="docs/media/iris-reference-evidence.png" alt="Iris training loss and held-out confusion matrix from the deterministic reference run" width="100%">
 </p>
 
 ## What is here
