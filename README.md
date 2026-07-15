@@ -4,9 +4,8 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-171717)](pyproject.toml)
 [![MIT license](https://img.shields.io/badge/license-MIT-171717)](LICENSE)
 
-A notebook-first path from tensor mechanics to measured neural-network behavior. The lessons use a
-small installable package underneath, so the MLP, CNN, training loops, and metrics exercised in the
-notebooks are the same implementations covered by CI.
+These notebooks are deliberately small. They start with tensor mechanics, end with a measured MLP and
+CNN, and import their models and training loops from the same package that CI tests.
 
 <p align="center">
   <img src="docs/media/iris-reference-evidence.png" alt="Iris training loss and held-out confusion matrix from the deterministic reference run" width="100%">
