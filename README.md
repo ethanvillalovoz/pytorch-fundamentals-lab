@@ -7,9 +7,9 @@
 These notebooks are deliberately small. They start with tensor mechanics, end with a measured MLP and
 CNN, and import their models and training loops from the same package that CI tests.
 
-<p align="center">
-  <img src="docs/media/iris-reference-evidence.png" alt="Iris training loss and held-out confusion matrix from the deterministic reference run" width="100%">
-</p>
+[![Iris deterministic reference run with the complete training-loss trace, held-out confusion matrix, and both misclassified examples](docs/media/iris-reference-evidence.svg)](docs/media/iris-reference-evidence.pdf)
+
+The error audit includes both committed mistakes—no held-out example was selected after viewing the results. [Figure contract and provenance](docs/figures/iris-reference/)
 
 ## What is here
 

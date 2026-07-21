@@ -1,0 +1,77 @@
+{
+  "bytes": 87977,
+  "failures": [],
+  "file": "/Users/ethanvillalovoz/Documents/Codex/2026-07-15/ok/work/visual-audit/repos/pytorch-fundamentals-lab/docs/media/iris-reference-evidence.pdf",
+  "font_report": {
+    "available": true,
+    "fonts": [
+      {
+        "embedded": true,
+        "encoding": "Identity-H",
+        "name": "BZWVIB+DejaVuSans-Bold",
+        "subset": true,
+        "type": "CID TrueType",
+        "unicode": true
+      },
+      {
+        "embedded": true,
+        "encoding": "Identity-H",
+        "name": "EQTQMJ+DejaVuSans",
+        "subset": true,
+        "type": "CID TrueType",
+        "unicode": true
+      },
+      {
+        "embedded": true,
+        "encoding": "Identity-H",
+        "name": "CPUQYB+DejaVuSans",
+        "subset": true,
+        "type": "CID TrueType",
+        "unicode": true
+      }
+    ]
+  },
+  "image_report": {
+    "available": true,
+    "images": [
+      {
+        "effective_ppi": [
+          391.1,
+          391.1
+        ],
+        "native_ppi": [
+          200.0,
+          200.0
+        ],
+        "number": 0,
+        "page": 1,
+        "pixels": [
+          643,
+          644
+        ],
+        "type": "image"
+      }
+    ]
+  },
+  "pdf": {
+    "available": true,
+    "creator": "Matplotlib v3.11.0, https://matplotlib.org",
+    "height_in": 5.6,
+    "page_size": "1008 x 403.2 pts",
+    "pages": 1,
+    "pdf_version": "1.4",
+    "producer": "Matplotlib pdf backend v3.11.0",
+    "width_in": 14.0
+  },
+  "status": "WARN",
+  "target_width_in": 7.16,
+  "tools": {
+    "pdffonts": "/Users/ethanvillalovoz/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin/pdffonts",
+    "pdfimages": "/Users/ethanvillalovoz/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin/pdfimages",
+    "pdfinfo": "/Users/ethanvillalovoz/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo"
+  },
+  "warnings": [
+    "manually verify that raster line art reaches 600 ppi at placed size",
+    "manual review required for final-size text, line weight, clipping, color accessibility, and scientific correctness"
+  ]
+}
