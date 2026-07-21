@@ -1,0 +1,52 @@
+{
+  "claim": "The seed-42 Iris reference run shows the complete learning trace, all held-out confusion cells, and both committed errors.",
+  "figure_id": "iris-reference-evidence",
+  "inputs": [
+    {
+      "bytes": 6979,
+      "path": "artifacts/iris-reference/metrics.json",
+      "role": "metrics",
+      "sha256": "5122b021f956d9b5003815ed9086a9f22fee1436de145d5f1bfa462e99f76078"
+    },
+    {
+      "bytes": 385,
+      "path": "artifacts/iris-reference/predictions.csv",
+      "role": "predictions",
+      "sha256": "5a5836d15ea0f2f3610b54f1481a114df7aebc9d8ca641737a2d58b1b1f208aa"
+    },
+    {
+      "bytes": 5946,
+      "path": "scripts/render_preview.py",
+      "role": "generation_source",
+      "sha256": "e4d47e773daef483e2b712ed5580c4137c41c9ae614cb7fc36836490fdef458f"
+    }
+  ],
+  "outputs": [
+    {
+      "bytes": 86299,
+      "path": "docs/media/iris-reference-evidence.svg",
+      "role": "svg",
+      "sha256": "5beef880bea2c1239ab47a6daa3a9b510ef4b1cdec641241e984663080a56fc0"
+    },
+    {
+      "bytes": 146962,
+      "path": "docs/media/iris-reference-evidence.png",
+      "role": "png",
+      "sha256": "10877101881192969e3393360ddc34be07a38d57857e998f58337437ac7b4d26"
+    },
+    {
+      "bytes": 87977,
+      "path": "docs/media/iris-reference-evidence.pdf",
+      "role": "pdf",
+      "sha256": "ff1a9d5363cd6d8ff17d37fcc22dd3efa0a91bea89ea3d55dfe53d22eb4b01ab"
+    }
+  ],
+  "processing_notes": [
+    "Matplotlib source reads only committed metrics and prediction artifacts; vector and raster outputs regenerated together; final render inspected manually."
+  ],
+  "schema_version": 1,
+  "source_revision": "e66dba4ce73b087f0b4de66b8bdcefc7b3df1374",
+  "selection_note": "Complete deterministic reference run; every epoch, confusion-matrix cell, and held-out error represented.",
+  "target_width_in": 7.16,
+  "venue": "GitHub README"
+}
